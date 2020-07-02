@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Build Docker Image'){
             steps{
-                sh "docker build . -t gurpartapsingh88/kuber:v1
+                sh "docker build . -t gurpartapsingh88/kuber:v1"
             }
         }
     }
