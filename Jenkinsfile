@@ -1,7 +1,6 @@
 pipeline{
     agent any
     environment{
-        DOCKERTAG = getDockerTag()
         registry = "gurpartapsingh88/k8simage"
         registryCredential = 'dockerhub'
     }
