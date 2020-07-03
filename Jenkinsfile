@@ -16,10 +16,23 @@ pipeline{
         stage("Docker Push"){
             steps{
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://registry.hub.docker.com') {
-                    sh "docker push registry "
+                    sh "docker push gurpartapsingh88/k8simage "
                 }
             }
 
         }
+        stage("Deploy to k8s"){
+            steps{
+                script{
+                    try{
+                        sh "sudo kubectl apply -f . "
+                    }catch(error){
+                        sh "sudo kubectl create -f ."
+                    }
+                }
+        
+            }
+        }
+        
     }
 }
