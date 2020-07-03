@@ -9,7 +9,7 @@ pipeline{
         stage("Build docker image"){
             steps{
                 script{
-                    docker.build registry + ":$BUILD_NUMBER"
+                    docker.build registry
                 }
             }
 
@@ -17,7 +17,7 @@ pipeline{
         stage("Docker Push"){
             steps{
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://registry.hub.docker.com') {
-                    sh "docker push registry + ":$BUILD_NUMBER" "
+                    sh "docker push registry "
                 }
             }
 
