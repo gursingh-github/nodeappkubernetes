@@ -10,7 +10,15 @@ pipeline{
                 sh "docker build . -t gurpartapsingh88/kuber:v1"
             }
         }
-                stage("Deploy to k8s"){
+        stage("Docker Push"){
+            steps{
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://registry.hub.docker.com') {
+                    sh "docker push gurpartapsingh88/k8simage "
+                }
+            }
+
+        }
+        stage("Deploy to k8s"){
             steps{
                 script{
                     try{
